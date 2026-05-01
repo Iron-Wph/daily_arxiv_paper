@@ -23,7 +23,9 @@ if [ -z "$OPENAI_API_KEY" ]; then
     echo "🔧 可选变量 / Optional variables:"
     echo "   export OPENAI_BASE_URL=\"https://api.openai.com/v1\"  # API基础URL / API base URL"
     echo "   export LANGUAGE=\"Chinese\"                           # 语言设置 / Language setting"
-    echo "   export CATEGORIES=\"cs.CV, cs.CL\"                    # 关注分类 / Categories of interest"
+    echo "   export CATEGORIES=\"cs.RO, cs.AI, cs.LG, cs.CV, cs.CL, eess.SY\"  # Embodied AI categories"
+    echo "   export KEYWORDS=\"embodied, robot learning, manipulation, locomotion, VLA\"  # Keyword filter"
+    echo "   export ENABLE_ROBOTICS_RSS=\"true\"                   # Enable robotics venue feeds"
     echo "   export MODEL_NAME=\"gpt-4o-mini\"                     # 模型名称 / Model name"
     echo ""
     echo "💡 设置后重新运行此脚本即可进行完整测试 / After setting, rerun this script for complete testing"
@@ -41,13 +43,20 @@ else
     
     # 设置默认值 / Set default values
     export LANGUAGE="${LANGUAGE:-Chinese}"
-    export CATEGORIES="${CATEGORIES:-cs.CV, cs.CL}"
+    export CATEGORIES="${CATEGORIES:-cs.RO, cs.AI, cs.LG, cs.CV, cs.CL, eess.SY}"
+    export KEYWORDS="${KEYWORDS:-embodied, embodied ai, robot learning, manipulation, locomotion, navigation, humanoid, vision-language-action, VLA, diffusion policy, sim-to-real}"
+    export CORE_CATEGORIES="${CORE_CATEGORIES:-cs.RO}"
+    export KEYWORD_FILTER_ENABLED="${KEYWORD_FILTER_ENABLED:-true}"
+    export ENABLE_ROBOTICS_RSS="${ENABLE_ROBOTICS_RSS:-true}"
+    export ROBOTICS_RSS_REQUIRE_KEYWORDS="${ROBOTICS_RSS_REQUIRE_KEYWORDS:-true}"
     export MODEL_NAME="${MODEL_NAME:-gpt-4o-mini}"
     export OPENAI_BASE_URL="${OPENAI_BASE_URL:-https://api.openai.com/v1}"
     
     echo "🔧 当前配置 / Current configuration:"
     echo "   LANGUAGE: $LANGUAGE"
     echo "   CATEGORIES: $CATEGORIES"
+    echo "   KEYWORDS: $KEYWORDS"
+    echo "   ENABLE_ROBOTICS_RSS: $ENABLE_ROBOTICS_RSS"
     echo "   MODEL_NAME: $MODEL_NAME"
     echo "   OPENAI_BASE_URL: $OPENAI_BASE_URL"
 fi

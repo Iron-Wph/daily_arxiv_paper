@@ -43,8 +43,8 @@ https://github.com/user-attachments/assets/b25712a4-fb8d-484f-863d-e8da6922f9d7
 
 
 # How to use
-This repo will daily crawl arXiv papers about **cs.CV, cs.GR, cs.CL and cs.AI**, and use **DeepSeek** to summarize the papers in **Chinese**.
-If you wish to crawl other arXiv categories, use other LLMs, or other languages, please follow the instructions.
+This fork is tuned for embodied intelligence. It daily crawls arXiv categories such as **cs.RO, cs.AI, cs.LG, cs.CV, cs.CL and eess.SY**, applies an embodied-AI keyword filter, and can also ingest robotics venue feeds such as **RSS, CoRL, ICRA, IROS, RA-L, T-RO and IJRR** through DBLP RSS streams. It uses **DeepSeek** or any OpenAI-compatible model to summarize papers in **Chinese** by default.
+If you wish to crawl other arXiv categories, change the embodied keyword list, use other LLMs, or other languages, please follow the instructions.
 Otherwise, you can directly use this repo in https://dw-dengwei.github.io/daily-arXiv-ai-enhanced/. Please star it if you like :)
 
 **Instructions:**
@@ -55,14 +55,20 @@ Otherwise, you can directly use this repo in https://dw-dengwei.github.io/daily-
 5. [Optional] Set a password in `secrets.ACCESS_PASSWORD` if you do not wish others to access your page. (see https://github.com/dw-dengwei/daily-arXiv-ai-enhanced/pull/64)
 6. Go to Variables. Variables are shown as plain text and are used for non-sensitive data
 7. Create the following repository variables:
-   1. `CATEGORIES`: separate the categories with ",", such as "cs.CL, cs.CV"
+   1. `CATEGORIES`: separate the categories with ",", such as "cs.RO, cs.AI, cs.LG, cs.CV, cs.CL, eess.SY"
    2. `LANGUAGE`: such as "Chinese" or "English"
    3. `MODEL_NAME`: such as "deepseek-chat"
    4. `EMAIL`: your email for push to GitHub
    5. `NAME`: your name for push to GitHub
+   6. `KEYWORDS` [optional]: embodied-AI keyword filter, such as "embodied, robot learning, manipulation, locomotion, vision-language-action, VLA, diffusion policy"
+   7. `ENABLE_ROBOTICS_RSS` [optional]: set to "true" to ingest robotics venue feeds, or "false" to use arXiv only
+   8. `ROBOTICS_RSS_URLS` [optional]: semicolon or newline separated entries in `Venue|URL` format
+   9. `ROBOTICS_RSS_REQUIRE_KEYWORDS` [optional]: set to "true" to filter venue feeds by `KEYWORDS`
 8. Go to your-own-repo -> Actions -> arXiv-daily-ai-enhanced
 9. You can manually click **Run workflow** to test if it works well (it may take about one hour). By default, this action will automatically run every day. You can modify it in `.github/workflows/run.yml`
 10. Set up GitHub pages: Go to your own repo -> Settings -> Pages. In `Build and deployment`, set `Source="Deploy from a branch"`, `Branch="main", "/(root)"`. Wait for a few minutes, go to https://\<username\>.github.io/daily-arXiv-ai-enhanced/. Please see this [issue](https://github.com/dw-dengwei/daily-arXiv-ai-enhanced/issues/14) for more precise instructions.
+
+For forked deployments, keep `js/data-config.js` placeholders until the first successful workflow run. The workflow injects your repository owner/name so the website reads data from your own `data` branch instead of the upstream repository.
 
 # Plans
 See https://github.com/users/dw-dengwei/projects/3

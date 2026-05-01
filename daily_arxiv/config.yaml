@@ -1,7 +1,42 @@
 arxiv:
-  categories:  # 文章类型
+  categories:
+    - cs.RO
+    - cs.AI
+    - cs.LG
     - cs.CV
     - cs.CL
+    - eess.SY
+
+curation:
+  core_categories:
+    - cs.RO
+  keyword_filter_enabled: true
+  keywords:
+    - embodied
+    - embodied ai
+    - robot learning
+    - manipulation
+    - locomotion
+    - navigation
+    - humanoid
+    - vision-language-action
+    - VLA
+    - diffusion policy
+    - sim-to-real
+
+robotics_sources:
+  enable_rss: true
+  require_keywords: true
+  feeds:
+    - RSS|https://dblp.org/feed/streams/conf/rss.rss
+    - CoRL|https://dblp.org/feed/streams/conf/corl.rss
+    - ICRA|https://dblp.org/feed/streams/conf/icra.rss
+    - IROS|https://dblp.org/feed/streams/conf/iros.rss
+    - RA-L|https://dblp.org/feed/streams/journals/ral.rss
+    - T-RO|https://dblp.org/feed/streams/journals/trob.rss
+    - IJRR|https://dblp.org/feed/streams/journals/ijrr.rss
+    - Science Robotics|https://dblp.org/feed/streams/journals/scirobotics.rss
+    - Autonomous Robots|https://dblp.org/feed/streams/journals/arobots.rss
 
 llm:
-  model_name: 'deepseek-chat'  # 使用的LLM模型
+  model_name: deepseek-chat

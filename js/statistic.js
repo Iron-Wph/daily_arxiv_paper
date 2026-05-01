@@ -736,16 +736,22 @@ function parseJsonlData(jsonlText, date) {
       }
       
       const summary = paper.AI && paper.AI.tldr ? paper.AI.tldr : paper.summary;
+      const paperUrl = paper.abs || paper.url || paper.pdf || `https://arxiv.org/abs/${paper.id}`;
+      const paperPdf = paper.pdf || (paperUrl.includes('arxiv.org/abs/') ? paperUrl.replace('/abs/', '/pdf/') : '');
       
       result[primaryCategory].push({
         title: paper.title,
-        url: paper.abs || paper.pdf || `https://arxiv.org/abs/${paper.id}`,
+        url: paperUrl,
+        pdf: paperPdf,
         authors: Array.isArray(paper.authors) ? paper.authors.join(', ') : paper.authors,
         category: allCategories,
         summary: summary,
         details: paper.summary || '',
         date: date,
         id: paper.id,
+        source: paper.source || 'arxiv',
+        venue: paper.venue || 'arXiv',
+        matched_keywords: Array.isArray(paper.matched_keywords) ? paper.matched_keywords : [],
         motivation: paper.AI && paper.AI.motivation ? paper.AI.motivation : '',
         method: paper.AI && paper.AI.method ? paper.AI.method : '',
         result: paper.AI && paper.AI.result ? paper.AI.result : '',

@@ -3,6 +3,10 @@
 
 Main category: {cate}
 
+Source: {source} / {venue}
+
+Matched keywords: {matched_keywords}
+
 TL;DR: {tldr}
 
 

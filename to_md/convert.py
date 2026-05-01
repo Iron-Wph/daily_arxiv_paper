@@ -8,7 +8,7 @@ if __name__ == "__main__":
     parser.add_argument("--data", type=str, help="Path to the jsonline file")
     args = parser.parse_args()
     data = []
-    preference = os.environ.get('CATEGORIES', 'cs.CV, cs.CL').split(',')
+    preference = (os.environ.get('CATEGORIES') or 'cs.RO, cs.AI, cs.LG, cs.CV, cs.CL, eess.SY').split(',')
     preference = list(map(lambda x: x.strip(), preference))
     def rank(cate):
         if cate in preference:
@@ -64,6 +64,9 @@ if __name__ == "__main__":
                         result=ai_data.get('result', ''),
                         conclusion=ai_data.get('conclusion', ''),
                         cate=item['categories'][0],
+                        source=item.get('source', 'arxiv'),
+                        venue=item.get('venue', 'arXiv'),
+                        matched_keywords=', '.join(item.get('matched_keywords', [])),
                         idx=next(idx)
                     )
                 )
